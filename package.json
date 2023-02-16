@@ -1,0 +1,25 @@
+{
+  "name": "moviesandseriessuggestions",
+  "version": "1.0.0",
+  "description": "Will suggest you random Movies and Series to watch.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GiuseppeF96/MoviesAndSeriesSuggestions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GiuseppeF96/MoviesAndSeriesSuggestions/issues"
+  },
+  "homepage": "https://github.com/GiuseppeF96/MoviesAndSeriesSuggestions#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
