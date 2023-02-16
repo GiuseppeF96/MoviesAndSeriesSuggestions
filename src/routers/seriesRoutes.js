@@ -1,10 +1,10 @@
 import express from "express";
 import {
-    getSeries,
-    findSeries,
-    findSeriesById,
-    addSerie,
-    newSerieValidators,
+  getSeries,
+  findSeries,
+  findSeriesById,
+  addSerie,
+  newSerieValidators,
 } from "../controllers/seriesController.js";
 
 const router = express.Router();
