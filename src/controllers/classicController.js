@@ -6,7 +6,7 @@ const classic = [
         genre: "Horror",
         publishing year: 1960,
         length: 109,
-	  director: "Alfred Hitchcock",
+        director: "Alfred Hitchcock",
     },
     {
         id: 2,
@@ -14,7 +14,7 @@ const classic = [
         genre: "Western",
         publishing year: 1966,
         length: 161,
-	  director: "Sergio Leone",
+	director: "Sergio Leone",
     },
     {
         id: 3,
@@ -22,8 +22,16 @@ const classic = [
         genre: "Sci-Fi",
         publishing year: 1982,
         length: 118,
-	  director: "Ridley Scott",
+	director: "Ridley Scott",
     },
+    {
+        id: 4,
+        name: "Metropolis",
+        genre: "Sci-Fi",
+        publishing year: 1927,
+        length: 149,
+	director: "Fritz Lang",
+    },	
 ];
 
 export const getClassic = (req, res) => {
