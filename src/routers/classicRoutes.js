@@ -12,7 +12,6 @@ const router = express.Router();
 router.get("/", getClassic);
 router.get("/search", findClassic);
 router.get("/:id", findClassicById);
-router.post("/", newCalssicValidators, addClassic);
+router.post("/", newClassicValidators, addClassic);
 
 export default router;
-
