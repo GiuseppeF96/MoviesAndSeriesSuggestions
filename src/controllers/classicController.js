@@ -1,7 +1,7 @@
 import { check, validationResult } from "express-validator";
 const classic = [
   {
-    id: 1,
+    id: 0,
     name: "Psycho",
     genre: "Horror",
     publishingYear: 1960,
@@ -9,7 +9,7 @@ const classic = [
     director: "Alfred Hitchcock",
   },
   {
-    id: 2,
+    id: 1,
     name: "The Good, the Bad and the Ugly",
     genre: "Western",
     publishingYear: 1966,
@@ -17,7 +17,7 @@ const classic = [
     director: "Sergio Leone",
   },
   {
-    id: 3,
+    id: 2,
     name: "Balde Runner",
     genre: "Sci-Fi",
     publishingYear: 1982,
@@ -25,7 +25,7 @@ const classic = [
     director: "Ridley Scott",
   },
   {
-    id: 4,
+    id: 3,
     name: "Metropolis",
     genre: "Sci-Fi",
     publishingYear: 1927,
