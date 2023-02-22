@@ -32,7 +32,7 @@ export const getCinema_movie = (req, res) => {
 
 export const findCinema_movie = (req, res) => {
   let result = cinema_movies.filter(
-    (serie) => cinema_movies.name == req.query.name
+    (cinema_movie) => cinema_movies.name == req.query.name
   );
   res.status(200).send(result);
 };
