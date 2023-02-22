@@ -1,17 +1,17 @@
 import express from "express";
 import {
-  getCinema_movie,
-  findCinema_movie,
-  findCinema_movieById,
-  addCinema_movie,
-  newCinMovieValidators,
-} from "../controllers/cinema_moviesController";
+  getSeries,
+  findSeries,
+  findSeriesById,
+  addSerie,
+  newSerieValidators,
+} from "../controllers/seriesController.js";
 
-const cinMoviesRouter = express.Router();
+const router = express.Router();
 
-cinMoviesRouter.get("/", getCinema_movie);
-cinMoviesRouter.get("/search", findCinema_movie);
-cinMoviesRouter.get("/:id", findCinema_movieById);
-cinMoviesRouter.post("/", newCinMovieValidators, addCinema_movie);
+router.get("/", getSeries);
+router.get("/search", findSeries);
+router.get("/:id", findSeriesById);
+router.post("/", newSerieValidators, addSerie);
 
-export default cinMoviesRouter;
+export default router;
