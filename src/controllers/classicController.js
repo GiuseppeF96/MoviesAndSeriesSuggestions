@@ -39,7 +39,7 @@ export const getClassic = (req, res) => {
 };
 
 export const findClassic = (req, res) => {
-  let result = classic.filter((classic) => classic.name == req.query.classic);
+  let result = classic.filter((classic) => classic.name == req.query.name);
   res.status(200).send(result);
 };
 
@@ -59,7 +59,7 @@ export const addClassic = (req, res) => {
 };
 
 // attached as second param in a route
-export const newCalssicValidators = [
+export const newClassicValidators = [
   check("name").notEmpty().withMessage("Name field required"),
   check("genre").notEmpty().withMessage("Genre field required"),
   check("director").notEmpty().withMessage("Director field required"),
