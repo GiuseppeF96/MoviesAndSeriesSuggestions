@@ -1,50 +1,33 @@
 import { check, validationResult } from "express-validator";
-const series = [
-  {
-    id: 1,
-    name: "The Walking Dead",
-    genre: "Horror",
-    seasons: 10,
-    episodes: 180,
-  },
-  {
-    id: 2,
-    name: "Breaking Bad",
-    genre: "Drama",
-    seasons: 5,
-    episodes: 62,
-  },
-  {
-    id: 3,
-    name: "Game of Thrones",
-    genre: "Fantasy",
-    seasons: 8,
-    episodes: 73,
-  },
-];
+import { Serie } from "../models/serie.js";
 
-export const getSeries = (req, res) => {
+export const getSeries = async (req, res) => {
+  const series = await Serie.find();
   res.status(200).send(series);
 };
 
-export const findSeries = (req, res) => {
-  let result = series.filter((serie) => serie.name == req.query.name);
+export const findSeriesByName = async (req, res) => {
+  let result = await Serie.find({ name: req.query.name });
   res.status(200).send(result);
 };
 
-export const findSeriesById = (req, res) => {
-  let result = series.filter((serie) => serie.id == req.params.id);
+export const findSeriesById = async (req, res) => {
+  let result = await Serie.findById(req.params.id);
   res.status(200).send(result);
 };
 
-export const addSerie = (req, res) => {
+export const addSerie = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  let serie = req.body;
-  series.push(serie);
-  res.status(201).send(`Added ${serie.name} to series collection`);
+  const serie = new Serie({
+    name: req.body.name,
+    genre: req.body.genre,
+    seasons: req.body.seasons,
+    episodes: req.body.episodes,
+  });
+  serie.save(serie).then((serie) => res.status(201).send(serie));
 };
 
 // attached as second param in a route

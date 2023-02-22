@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getSeries,
-  findSeries,
+  findSeriesByName,
   findSeriesById,
   addSerie,
   newSerieValidators,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/", getSeries);
-router.get("/search", findSeries);
+router.get("/search", findSeriesByName);
 router.get("/:id", findSeriesById);
 router.post("/", newSerieValidators, addSerie);
 
