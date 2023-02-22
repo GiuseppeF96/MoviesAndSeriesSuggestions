@@ -32,12 +32,8 @@ export const getCinema_movie = (req, res) => {
 };
 
 export const findCinema_movie = (req, res) => {
-
-  let result = cinema_movies.filter(
-    (cinema_movie) => cinema_movies.name == req.query.name
-  );
-  res.status(200).send(result);
-
+    let result = cinema_movies.filter((serie) => cinema_movies.name == req.query.name);
+    res.status(200).send(result);
 };
 
 export const findCinema_movieById = (req, res) => {
