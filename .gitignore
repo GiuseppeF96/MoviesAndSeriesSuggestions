@@ -1,0 +1,5 @@
+
+.db/diagnostic.data/metrics.interim
+.db/journal/WiredTigerLog.0000000002
+.db/WiredTiger.turtle
+.db/WiredTiger.wt
