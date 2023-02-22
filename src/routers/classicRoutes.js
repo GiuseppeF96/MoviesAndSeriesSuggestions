@@ -1,7 +1,7 @@
 import express from "express";
 import {
   getClassic,
-  findClassic,
+  findClassicByName,
   findClassicById,
   addClassic,
   newClassicValidators,
@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.get("/", getClassic);
-router.get("/search", findClassic);
+router.get("/search", findClassicByName);
 router.get("/:id", findClassicById);
 router.post("/", newClassicValidators, addClassic);
 

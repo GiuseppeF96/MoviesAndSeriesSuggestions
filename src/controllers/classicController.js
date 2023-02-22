@@ -1,61 +1,34 @@
 import { check, validationResult } from "express-validator";
-const classic = [
-  {
-    id: 0,
-    name: "Psycho",
-    genre: "Horror",
-    publishingYear: 1960,
-    length: 109,
-    director: "Alfred Hitchcock",
-  },
-  {
-    id: 1,
-    name: "The Good, the Bad and the Ugly",
-    genre: "Western",
-    publishingYear: 1966,
-    length: 161,
-    director: "Sergio Leone",
-  },
-  {
-    id: 2,
-    name: "Balde Runner",
-    genre: "Sci-Fi",
-    publishingYear: 1982,
-    length: 118,
-    director: "Ridley Scott",
-  },
-  {
-    id: 3,
-    name: "Metropolis",
-    genre: "Sci-Fi",
-    publishingYear: 1927,
-    length: 149,
-    director: "Fritz Lang",
-  },
-];
+import { Classic } from "../models/classic.js";
 
-export const getClassic = (req, res) => {
+export const getClassic = async (req, res) => {
+  const classic = await Classic.find();
   res.status(200).send(classic);
 };
 
-export const findClassic = (req, res) => {
-  let result = classic.filter((classic) => classic.name == req.query.name);
+export const findClassicByName = async (req, res) => {
+  let result = await Classic.filter({ name: req.query.name });
   res.status(200).send(result);
 };
 
-export const findClassicById = (req, res) => {
-  let result = classic.filter((classic) => classic.id == req.params.id);
+export const findClassicById = async (req, res) => {
+  let result = await Classic.filter(req.params.id);
   res.status(200).send(result);
 };
 
-export const addClassic = (req, res) => {
+export const addClassic = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  let classic = req.body;
-  classic.push(classic);
-  res.status(201).send(`Added ${classic.name} to classic collection`);
+  const classic = new Classic({
+    name: req.body.name,
+    genre: req.body.genre,
+    publishingYear: req.body.publishingYear,
+    length: req.body.length,
+    director: req.body.director,
+  });
+  classic.save(classic).then((classic) => res.status(201).send(classic));
 };
 
 // attached as second param in a route
