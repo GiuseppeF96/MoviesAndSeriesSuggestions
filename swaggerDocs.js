@@ -107,6 +107,90 @@ const swaggerDocs = {
         },
       },
     },
+
+    "/classic": {
+      get: {
+        tags: ["Classic"],
+        summary: "Get all classics in database",
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        },
+      },
+      post: {
+        tags: ["Classic"],
+        summary: "Add a new classic to the database",
+        parameters: [
+          {
+            name: "Classic",
+            in: "body",
+            description: "Classics to add to the database",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        ],
+        responses: {
+          201: {
+            description: "Created",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        },
+      },
+    },
+    "/classic/search": {
+      get: {
+        tags: ["Classic"],
+        summary: "Get classics by name",
+        parameters: [
+          {
+            name: "name",
+            in: "query",
+            description: "Name of the classic",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        },
+      },
+    },
+    "/classic/{id}": {
+      get: {
+        tags: ["Classic"],
+        summary: "Get classic by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the classic",
+            required: true,
+            type: "string",
+          },
+        ],
+
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        },
+      },
+    },
   },
 
   definitions: {
@@ -128,6 +212,32 @@ const swaggerDocs = {
         episodes: {
           type: "number",
           description: "Number of episodes of the series",
+        },
+      },
+    },
+
+    Classics: {
+      required: ["name", "genre", "publishingYear", "length", "director"],
+      properties: {
+        name: {
+          type: "string",
+          description: "Name of the classic",
+        },
+        genre: {
+          type: "string",
+          description: "Genre of the classic",
+        },
+        publishingYear: {
+          type: "number",
+          description: "Year in which a film was released",
+        },
+        length: {
+          type: "number",
+          description: "Length of the film in minutes",
+        },
+        director: {
+          type: "string",
+          description: "The name of the director who directed the film",
         },
       },
     },
