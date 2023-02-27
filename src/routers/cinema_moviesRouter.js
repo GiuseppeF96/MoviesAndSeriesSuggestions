@@ -4,14 +4,14 @@ import {
   findCinema_movieByName,
   findCinema_movieById,
   addCinema_movie,
-  newCinMovieValidators,
+  newCinema_movieValidators,
 } from "../controllers/cinema_moviesController.js";
 
-const cinMoviesRouter = express.Router();
+const router = express.Router();
 
 cinMoviesRouter.get("/", getCinema_movie);
 cinMoviesRouter.get("/search", findCinema_movieByName);
 cinMoviesRouter.get("/:id", findCinema_movieById);
 cinMoviesRouter.post("/", newCinMovieValidators, addCinema_movie);
 
-export default cinMoviesRouter;
+export default router;
