@@ -191,6 +191,88 @@ const swaggerDocs = {
         },
       },
     },
+    "/Cinema Movies": {
+      get: {
+        tags: ["Cinema Movies"],
+        summary: "Get all Cinema Movies in database",
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+             $ref: "#/definitions/Cinema Movies", 
+            },
+          },
+        },
+      },
+      post: {
+        tags: ["Cinema Movies"],
+        summary: "Add a new Cinema Movie to the database",
+        parameters: [
+          {
+            name: "Cinema Movies",
+            in: "body",
+            description: "Cinema Movies to add to the database",
+            schema: {
+              $ref: "#/definitions/Cinema Movies",
+            },
+          },
+        ],
+        responses: {
+          201: {
+            description: "Created",
+            schema: {
+              $ref: "#/definitions/Cinema Movies",
+            },
+          },
+        },
+      },
+    },
+    "/Cinema Movies/search": {
+      get: {
+        tags: ["Cinema Movies"],
+        summary: "Get Cinema Movies by name",
+        parameters: [
+          {
+            name: "name",
+            in: "query",
+            description: "Name of the Cinema Movie",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Cinema Movies",
+            },
+          },
+        },
+      }, 
+    },
+    "/Cinema Movies/{id}": {
+      get: {
+        tags: ["Cinema Movies"],
+        summary: "Get Cinema Movies by id",
+        parameters: [
+          {
+            name: "id",
+            in:"path",
+            description: "Id of the Cinema Movies",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Cinema Movies",
+            },
+          },
+        },
+      },
+    },
   },
 
   definitions: {
@@ -238,6 +320,32 @@ const swaggerDocs = {
         director: {
           type: "string",
           description: "The name of the director who directed the film",
+        },
+      },
+    },
+
+    Cinema_Movies:{
+      required: ["name", "genre", "publishing", "length", "director"],
+      properties: {
+        name: {
+          type: "string",
+          description: "Name of the Cinema Movie",
+        },
+        genre: {
+          type: "string",
+          description: "Genre of the Cinema Movie",
+        },
+        publishing: {
+          type: "number",
+          description: "Year in which the Cinema Movie was released",
+        },
+        length: {
+          type: "number",
+          description: "Length of the Cinema Movie in minutes",
+        },
+        director: {
+          type: "string",
+          description: "The name of the director who directed the Cinema Movie",
         },
       },
     },
