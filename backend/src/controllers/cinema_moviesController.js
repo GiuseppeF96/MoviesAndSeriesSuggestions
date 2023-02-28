@@ -24,9 +24,8 @@ export const addCinema_movie = async (req, res) => {
   const cinema_movie = new Cinema({
     name: req.body.name,
     genre: req.body.genre,
-    publishing: req.body.publishing,
     length: req.body.length,
-    director: req.body.director,
+    mainActor: req.body.mainActor,
   });
   cinema_movie
     .save(cinema_movie)
@@ -63,5 +62,5 @@ export const getRandomCinema_movie = async (req, res) => {
 export const newCinMovieValidators = [
   check("name").notEmpty().withMessage("Name field required"),
   check("genre").notEmpty().withMessage("Genre field required"),
-  check("director").notEmpty().withMessage("Director field required"),
+  check("mainActor").notEmpty().withMessage("mainActor field required"),
 ];

@@ -335,17 +335,13 @@ const swaggerDocs = {
           type: "string",
           description: "Genre of the Cinema Movie",
         },
-        publishing: {
-          type: "number",
-          description: "Year in which the Cinema Movie was released",
-        },
         length: {
           type: "number",
           description: "Length of the Cinema Movie in minutes",
         },
-        director: {
+        mainActor: {
           type: "string",
-          description: "The name of the director who directed the Cinema Movie",
+          description: "The name of the Main Actor from the Cinema Movie",
         },
       },
     },
