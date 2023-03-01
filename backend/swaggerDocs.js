@@ -325,7 +325,7 @@ const swaggerDocs = {
     },
 
     Cinema_Movies:{
-      required: ["name", "genre", "publishing", "length", "director"],
+      required: ["name", "genre", "length", "mainActor"],
       properties: {
         name: {
           type: "string",
