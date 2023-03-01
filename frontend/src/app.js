@@ -34,24 +34,25 @@ class App extends React.Component {
         <button onClick={this.fetchDisplayData}>Fetch Data</button>
         <div>
           <h1>Random Serie</h1>
-          <p>{this.state.serie.title}</p>
-          <p>{this.state.serie.description}</p>
+          <p>{this.state.serie.name}</p>
           <p>{this.state.serie.genre}</p>
-          <p>{this.state.serie.rating}</p>
+          <p>{this.state.serie.seasons}</p>
+          <p>{this.state.serie.episodes}</p>
         </div>
         <div>
           <h1>Random Cinema Movie</h1>
-          <p>{this.state.cinemaMovie.title}</p>
-          <p>{this.state.cinemaMovie.description}</p>
+          <p>{this.state.cinemaMovie.name}</p>
           <p>{this.state.cinemaMovie.genre}</p>
-          <p>{this.state.cinemaMovie.rating}</p>
+          <p>{this.state.cinemaMovie.duration}</p>
+          <p>{this.state.cinemaMovie.mainActor}</p>
         </div>
         <div>
           <h1>Random Classic</h1>
-          <p>{this.state.classic.title}</p>
-          <p>{this.state.classic.description}</p>
+          <p>{this.state.classic.name}</p>
           <p>{this.state.classic.genre}</p>
-          <p>{this.state.classic.rating}</p>
+          <p>{this.state.classic.publishingYear}</p>
+          <p>{this.state.classic.duration}</p>
+          <p>{this.state.classic.director}</p>
         </div>
       </div>
     );

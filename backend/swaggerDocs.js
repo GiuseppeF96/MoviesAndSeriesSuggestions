@@ -83,7 +83,69 @@ const swaggerDocs = {
         },
       },
     },
-    "/series/{id}": {
+    "/series/randomizer": {
+      get: {
+        tags: ["Series"],
+        summary: "Get random series",
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        },
+      },
+    },
+    "/series/id/{id}": {
+      patch: {
+        tags: ["Series"],
+        summary: "Update series by id",
+        parameters: [
+          {
+            name: "Serie",
+            in: "body",
+            description: "Serie to update",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        },
+      },
+    },
+
+    "/series/id/{id}": {
+      delete: {
+        tags: ["Series"],
+        summary: "Delete series by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the series",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        },
+      },
+    },
+    "/series/id/{id}": {
       get: {
         tags: ["Series"],
         summary: "Get series by id",
@@ -167,7 +229,7 @@ const swaggerDocs = {
         },
       },
     },
-    "/classic/{id}": {
+    "/classic/id/{id}": {
       get: {
         tags: ["Classic"],
         summary: "Get classic by id",
@@ -191,7 +253,7 @@ const swaggerDocs = {
         },
       },
     },
-    "/Cinema Movies": {
+    "/Cinema-Movies": {
       get: {
         tags: ["Cinema Movies"],
         summary: "Get all Cinema Movies in database",
@@ -199,7 +261,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-             $ref: "#/definitions/Cinema Movies", 
+              $ref: "#/definitions/Cinema Movies",
             },
           },
         },
@@ -248,16 +310,16 @@ const swaggerDocs = {
             },
           },
         },
-      }, 
+      },
     },
-    "/Cinema Movies/{id}": {
+    "/Cinema Movies/id/{id}": {
       get: {
         tags: ["Cinema Movies"],
         summary: "Get Cinema Movies by id",
         parameters: [
           {
             name: "id",
-            in:"path",
+            in: "path",
             description: "Id of the Cinema Movies",
             required: true,
             type: "string",
@@ -324,7 +386,7 @@ const swaggerDocs = {
       },
     },
 
-    Cinema_Movies:{
+    Cinema_Movies: {
       required: ["name", "genre", "length", "mainActor"],
       properties: {
         name: {

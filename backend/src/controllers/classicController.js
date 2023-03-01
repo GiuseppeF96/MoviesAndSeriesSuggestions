@@ -26,7 +26,7 @@ export const addClassic = async (req, res) => {
     name: req.body.name,
     genre: req.body.genre,
     publishingYear: req.body.publishingYear,
-    length: req.body.length,
+    duration: req.body.duration,
     director: req.body.director,
   });
   classic.save(classic).then((classic) => res.status(201).send(classic));

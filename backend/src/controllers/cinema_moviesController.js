@@ -24,7 +24,7 @@ export const addCinema_movie = async (req, res) => {
   const cinema_movie = new Cinema({
     name: req.body.name,
     genre: req.body.genre,
-    length: req.body.length,
+    duration: req.body.duration,
     mainActor: req.body.mainActor,
   });
   cinema_movie
