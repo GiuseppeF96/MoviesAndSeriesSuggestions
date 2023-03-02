@@ -10,7 +10,7 @@ export async function fetchRandomSerie() {
       return res;
     });
 }
-
+/*
 export async function fetchRandomCinemaMovie() {
   return await fetch("http://localhost:4000/cinema-movies/randomizer", {
     mode: "cors",
@@ -34,3 +34,4 @@ export async function fetchRandomClassic() {
       return res;
     });
 }
+*/

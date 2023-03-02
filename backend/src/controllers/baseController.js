@@ -21,7 +21,7 @@ export const getRoutesInfo = async (req, res) => {
             name: "Get cinema movie by id",
             description: "Get cinema movie by id",
             method: "GET",
-            url: "/cinema-movies/:id",
+            url: "/cinema-movies/id/:id",
           },
           {
             name: "Add cinema movie",
@@ -52,7 +52,7 @@ export const getRoutesInfo = async (req, res) => {
             name: "Get series by id",
             description: "Get series by id",
             method: "GET",
-            url: "/series/:id",
+            url: "/series/id/:id",
           },
           {
             name: "Add series",
@@ -82,7 +82,7 @@ export const getRoutesInfo = async (req, res) => {
             name: "Get classic movie by id",
             description: "Get classic movie by id",
             method: "GET",
-            url: "/classics/:id",
+            url: "/classics/id/:id",
           },
           {
             name: "Add classic movie",

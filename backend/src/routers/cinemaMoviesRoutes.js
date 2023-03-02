@@ -8,7 +8,7 @@ import {
   patchCinema_movie,
   deleteCinema_movie,
   getRandomCinema_movie,
-} from "../controllers/cinema_moviesController.js";
+} from "../controllers/cinemaMoviesController.js";
 
 const router = express.Router();
 

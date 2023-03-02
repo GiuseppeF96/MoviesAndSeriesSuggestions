@@ -7,4 +7,4 @@ const cinemaSchema = new mongoose.Schema({
   mainActor: { type: String, required: true },
 });
 
-export const Cinema = mongoose.model("Cinema Movie", cinemaSchema);
+export const Cinema = mongoose.model("Cinema-Movie", cinemaSchema);

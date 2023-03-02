@@ -1,5 +1,5 @@
 import { check, validationResult } from "express-validator";
-import { Cinema } from "../models/cinema_movie.js";
+import { Cinema } from "../models/cinemaMovie.js";
 
 export const getCinema_movie = async (req, res) => {
   const cinema_movies = await Cinema.find();

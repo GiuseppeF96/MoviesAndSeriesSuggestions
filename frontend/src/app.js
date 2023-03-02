@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  fetchRandomCinemaMovie,
-  fetchRandomClassic,
+  //fetchRandomCinemaMovie,
+  //fetchRandomClassic,
   fetchRandomSerie,
 } from "./RestClient";
 class App extends React.Component {
