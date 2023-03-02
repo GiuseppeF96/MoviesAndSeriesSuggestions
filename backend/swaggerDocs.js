@@ -16,7 +16,7 @@ const swaggerDocs = {
     },
   },
   host: "localhost:4000",
-  basePath: "/",
+  basePath: "/", // the basepath of the url
   tags: [
     {
       name: "Routes",
