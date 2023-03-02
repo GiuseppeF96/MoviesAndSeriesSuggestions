@@ -1,9 +1,9 @@
 import React from "react";
 import {
-  //fetchRandomCinemaMovie,
-  //fetchRandomClassic,
+  fetchRandomCinemaMovie,
+  fetchRandomClassic,
   fetchRandomSerie,
-} from "./RestClient";
+} from "./RestClient.js";
 class App extends React.Component {
   // constructor initializes component state data
   // and binds methods
@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.fetchDisplayData}>Fetch Data</button>
+        <button onClick={this.fetchDisplayData}>Fetch Random Data</button>
         <div>
           <h1>Random Serie</h1>
           <p>{this.state.serie.name}</p>

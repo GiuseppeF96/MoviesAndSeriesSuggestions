@@ -36,7 +36,7 @@ export const deleteSerie = async (req, res) => {
   res.status(200).send(result);
 };
 
-//Patch a serie
+//Patch a serie by id and validate the body
 export const patchSerie = async (req, res) => {
   let result = await Serie.findByIdAndUpdate(req.params.id, req.body, {
     new: false,
