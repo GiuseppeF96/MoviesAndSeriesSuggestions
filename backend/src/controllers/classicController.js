@@ -41,7 +41,7 @@ export const deleteClassic = async (req, res) => {
 //Patch a classic
 export const patchClassic = async (req, res) => {
   let result = await Classic.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
+    new: false,
   });
   res.status(200).send(result);
 };

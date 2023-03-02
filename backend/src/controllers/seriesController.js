@@ -39,7 +39,7 @@ export const deleteSerie = async (req, res) => {
 //Patch a serie
 export const patchSerie = async (req, res) => {
   let result = await Serie.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
+    new: false,
   });
   res.status(200).send(result);
 };

@@ -41,7 +41,7 @@ export const deleteCinema_movie = async (req, res) => {
 //Patch a cinema_movie
 export const patchCinema_movie = async (req, res) => {
   let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
+    new: false,
   });
   res.status(200).send(result);
 };

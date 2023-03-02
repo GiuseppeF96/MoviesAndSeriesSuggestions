@@ -1,3 +1,5 @@
+import { json } from "express";
+
 const swaggerDocs = {
   swagger: "2.0",
   info: {
@@ -86,55 +88,7 @@ const swaggerDocs = {
     "/series/randomizer": {
       get: {
         tags: ["Series"],
-        summary: "Get random series",
-        responses: {
-          200: {
-            description: "OK",
-            schema: {
-              $ref: "#/definitions/Series",
-            },
-          },
-        },
-      },
-    },
-    "/series/id/{id}": {
-      patch: {
-        tags: ["Series"],
-        summary: "Update series by id",
-        parameters: [
-          {
-            name: "Serie",
-            in: "body",
-            description: "Serie to update",
-            schema: {
-              $ref: "#/definitions/Series",
-            },
-          },
-        ],
-        responses: {
-          200: {
-            description: "OK",
-            schema: {
-              $ref: "#/definitions/Series",
-            },
-          },
-        },
-      },
-    },
-
-    "/series/id/{id}": {
-      delete: {
-        tags: ["Series"],
-        summary: "Delete series by id",
-        parameters: [
-          {
-            name: "id",
-            in: "path",
-            description: "Id of the series",
-            required: true,
-            type: "string",
-          },
-        ],
+        summary: "Get a random series",
         responses: {
           200: {
             description: "OK",
@@ -153,12 +107,63 @@ const swaggerDocs = {
           {
             name: "id",
             in: "path",
-            description: "Id of the series",
+            description: "Id of the series to get",
             required: true,
             type: "string",
           },
         ],
 
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        },
+      },
+      delete: {
+        tags: ["Series"],
+        summary: "Delete series by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the series to delete",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        },
+      },
+      patch: {
+        tags: ["Series"],
+        summary: "Update series by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the series",
+            required: true,
+            type: "string",
+          },
+          {
+            name: "Series",
+            in: "body",
+            description: "Values to be updated",
+            required: true,
+            schema: {
+              $ref: "#/definitions/Series",
+            },
+          },
+        ],
         responses: {
           200: {
             description: "OK",
