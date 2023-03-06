@@ -48,6 +48,7 @@ export const patchClassic = async (req, res) => {
 
 // get random classic movie
 export const getRandomClassic = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Classic.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);

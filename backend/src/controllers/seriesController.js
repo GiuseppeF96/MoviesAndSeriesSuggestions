@@ -45,6 +45,7 @@ export const patchSerie = async (req, res) => {
 };
 
 export const getRandomSerie = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Serie.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);

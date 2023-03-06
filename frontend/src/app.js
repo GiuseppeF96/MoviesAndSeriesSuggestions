@@ -1,18 +1,14 @@
 import React from "react";
-import {
-  fetchRandomCinemaMovie,
-  fetchRandomClassic,
-  fetchRandomSerie,
-} from "./RestClient.js";
+import { fetchRandomSerie } from "./RestClient";
+import "./App.css";
+
 class App extends React.Component {
   // constructor initializes component state data
   // and binds methods
   constructor(props) {
     super(props);
     this.state = {
-      serie: {},
-      cinemaMovie: {},
-      classic: {},
+      randomSerie: [],
     };
     this.fetchDisplayData = this.fetchDisplayData.bind(this);
   }
@@ -21,38 +17,26 @@ class App extends React.Component {
   // fetchAllBooks. as soon as the data is there it is set
   // as a state
   async fetchDisplayData() {
-    const serie = await fetchRandomSerie();
-    const cinemaMovie = await fetchRandomCinemaMovie();
-    const classic = await fetchRandomClassic();
-    this.setState({ serie, cinemaMovie, classic });
+    let data = await fetchRandomSerie();
+    this.setState({ randomSerie: data });
   }
 
   // this is displayed on the screen
   render() {
     return (
       <div>
-        <button onClick={this.fetchDisplayData}>Fetch Random Data</button>
-        <div>
+        <div id="title">Random Series And Movies Suggestions 📚📚 </div>
+        <button id="fetcher" onClick={this.fetchDisplayData}>
+          Fetch Random Series And Movies
+        </button>
+        <div className="data">
           <h1>Random Serie</h1>
-          <p>{this.state.serie.name}</p>
-          <p>{this.state.serie.genre}</p>
-          <p>{this.state.serie.seasons}</p>
-          <p>{this.state.serie.episodes}</p>
-        </div>
-        <div>
-          <h1>Random Cinema Movie</h1>
-          <p>{this.state.cinemaMovie.name}</p>
-          <p>{this.state.cinemaMovie.genre}</p>
-          <p>{this.state.cinemaMovie.duration}</p>
-          <p>{this.state.cinemaMovie.mainActor}</p>
-        </div>
-        <div>
-          <h1>Random Classic</h1>
-          <p>{this.state.classic.name}</p>
-          <p>{this.state.classic.genre}</p>
-          <p>{this.state.classic.publishingYear}</p>
-          <p>{this.state.classic.duration}</p>
-          <p>{this.state.classic.director}</p>
+          {/* generates a div for every entry */}
+          {this.state.randomSerie.map((randomSerie, key) => (
+            <div key={key}>
+              {randomSerie.name} Genre: {randomSerie.genre}
+            </div>
+          ))}
         </div>
       </div>
     );

@@ -48,6 +48,7 @@ export const patchCinema_movie = async (req, res) => {
 
 // get random cinema_movie
 export const getRandomCinema_movie = async (req, res) => {
+  res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Cinema.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);
