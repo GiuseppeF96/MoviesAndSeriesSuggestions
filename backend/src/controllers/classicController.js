@@ -52,7 +52,7 @@ export const getRandomClassic = async (req, res) => {
   try {
     const count = await Classic.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);
-    const randomClassic = await Cinema.findOne().skip(randomIndex);
+    const randomClassic = await Classic.findOne().skip(randomIndex);
     res.status(200).send(randomClassic);
   } catch (error) {
     res.status(500).send({ message: error.message });

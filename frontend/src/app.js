@@ -36,31 +36,40 @@ class App extends React.Component {
   // this is displayed on the screen
   render() {
     return (
-      <div>
-        <div id="title">Random Serie and Movie Suggestion </div>
+      <div id="page_content">
+        <div id="title">What should you watch today? 🍿📺</div>
         <button id="fetcher" onClick={this.fetchDisplayData}>
-          Get Random Serie and Movies
+          Suggest me something!
         </button>
-        <div className="data">
-          <h1>Random Serie</h1>
-          <p> {this.state.randomSerie.name} </p>
-          <p> {this.state.randomSerie.genre} </p>
-          <p> {this.state.randomSerie.seasons} </p>
-          <p> {this.state.randomSerie.episodes} </p>
-        </div>
-        <div className="data">
-          <h1>Random Cinema Movie</h1>
-          <p> {this.state.randomCinema.name} </p>
-          <p> {this.state.randomCinema.genre} </p>
-          <p> {this.state.randomCinema.seasons} </p>
-          <p> {this.state.randomCinema.episodes} </p>
-        </div>
-        <div className="data">
-          <h1>Random Classic Movie</h1>
-          <p> {this.state.randomClassic.name} </p>
-          <p> {this.state.randomClassic.genre} </p>
-          <p> {this.state.randomClassic.seasons} </p>
-          <p> {this.state.randomClassic.episodes} </p>
+        <div className="cards">
+          <div className="card">
+            <div className="card_content">
+              <h1>Random Serie</h1>
+              <p>Name: {this.state.randomSerie.name} </p>
+              <p>Genre: {this.state.randomSerie.genre} </p>
+              <p>Seasons: {this.state.randomSerie.seasons} </p>
+              <p>Episodes: {this.state.randomSerie.episodes} </p>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card_content">
+              <h1>Random Cinema Movie</h1>
+              <p>Name: {this.state.randomCinema.name} </p>
+              <p>Genre: {this.state.randomCinema.genre} </p>
+              <p>duration: {this.state.randomCinema.duration} </p>
+              <p>Main Actor: {this.state.randomCinema.mainActor} </p>
+            </div>
+          </div>
+          <div className="card">
+            <div className="card_content">
+              <h1>Random Classic Movie</h1>
+              <p>Name: {this.state.randomClassic.name} </p>
+              <p>Genre: {this.state.randomClassic.genre} </p>
+              <p>Publishing Year: {this.state.randomClassic.publishingYear} </p>
+              <p>Duration: {this.state.randomClassic.duration} </p>
+              <p>Director: {this.state.randomClassic.director} </p>
+            </div>
+          </div>
         </div>
       </div>
     );
