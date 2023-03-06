@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { fetchRandomSerie } from "./RestClient";
 import "./App.css";
 
@@ -8,35 +8,30 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      randomSerie: [],
+      randomSerie: "",
     };
     this.fetchDisplayData = this.fetchDisplayData.bind(this);
   }
 
   // requests and waits for data by calling RestClient's
-  // fetchAllBooks. as soon as the data is there it is set
+  // fetchRandomSerie. as soon as the data is there it is set
   // as a state
   async fetchDisplayData() {
     let data = await fetchRandomSerie();
-    this.setState({ randomSerie: data });
+    this.setState({ data });
   }
 
   // this is displayed on the screen
   render() {
     return (
       <div>
-        <div id="title">Random Series And Movies Suggestions 📚📚 </div>
+        <div id="title">Random Serie and Movie Suggestion </div>
         <button id="fetcher" onClick={this.fetchDisplayData}>
-          Fetch Random Series And Movies
+          Click me
         </button>
         <div className="data">
           <h1>Random Serie</h1>
-          {/* generates a div for every entry */}
-          {this.state.randomSerie.map((randomSerie, key) => (
-            <div key={key}>
-              {randomSerie.name} Genre: {randomSerie.genre}
-            </div>
-          ))}
+          <p>{this.state.data}</p>
         </div>
       </div>
     );
