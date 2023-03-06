@@ -5,7 +5,11 @@ import {
   fetchRandomClassic,
 } from "./RestClient";
 import "./App.css";
-
+/*
+This is the main component of the application
+It is responsible for fetching data from the backend
+and displaying it on the screen
+*/
 class App extends React.Component {
   // constructor initializes component state data
   // and binds methods
@@ -16,12 +20,14 @@ class App extends React.Component {
       randomCinema: {},
       randomClassic: {},
     };
+    // bind the fetchDisplayData method to the component
     this.fetchDisplayData = this.fetchDisplayData.bind(this);
   }
 
-  // requests and waits for data by calling RestClient's
-  // fetchRandomSerie. as soon as the data is there it is set
-  // as a state
+  /*
+  This method is called when the component is mounted
+  It calls the fetchDisplayData method to fetch data from the backend.
+  */
   async fetchDisplayData() {
     let dataSerie = await fetchRandomSerie();
     let dataCinema = await fetchRandomCinemaMovie();
@@ -33,7 +39,11 @@ class App extends React.Component {
     });
   }
 
-  // this is displayed on the screen
+  /*
+   This is displayed on the screen
+   it calls the fetchDisplayData method when the button is clicked
+   it displays the data from the backend
+   */
   render() {
     return (
       <div id="page_content">
