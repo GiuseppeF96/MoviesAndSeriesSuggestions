@@ -258,7 +258,7 @@ const swaggerDocs = {
         },
       },
     },
-    "/Cinema-Movies": {
+    "/cinema-movies": {
       get: {
         tags: ["Cinema Movies"],
         summary: "Get all Cinema Movies in database",
@@ -317,6 +317,20 @@ const swaggerDocs = {
         },
       },
     },
+    "/cinema-movies/randomizer": {
+      get: {
+        tags: ["Cinema Movies"],
+        summary: "Get a random Cinema Movie",
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/CinemaMovies",
+            },
+          },
+        },
+      },
+    },
     "/cinema-movies/id/{id}": {
       get: {
         tags: ["Cinema Movies"],
@@ -335,6 +349,57 @@ const swaggerDocs = {
             description: "OK",
             schema: {
               $ref: "#/definitions/CinemaMovies",
+            },
+          },
+        },
+      },
+      delete: {
+        tags: ["Cinema Movies"],
+        summary: "Delete Cinema Movies by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the Cinema Movies to delete",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/CinemaMovies"
+            },
+          },
+        },
+      },
+      patch: {
+        tags: ["Cinema Movies"],
+        summary: "Update Cinema Movies by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the Cinema Movies",
+            required: true,
+            type: "string",
+          },
+          {
+            name: "Cinema Movies",
+            in: "body",
+            description: "Values to be updated",
+            required: true,
+            schema: {
+              $ref: "#/definitions/CinemaMovies",
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/CinemaMovies"
             },
           },
         },
