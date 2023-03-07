@@ -32,6 +32,31 @@ class App extends React.Component {
     let dataSerie = await fetchRandomSerie();
     let dataCinema = await fetchRandomCinemaMovie();
     let dataClassic = await fetchRandomClassic();
+    if (dataSerie === "No data found") {
+      dataSerie = {
+        name: "No data found",
+        genre: "No data found",
+        seasons: "No data found",
+        episodes: "No data found",
+      };
+    }
+    if (dataCinema === "No data found") {
+      dataCinema = {
+        name: "No data found",
+        genre: "No data found",
+        duration: "No data found",
+        mainActor: "No data found",
+      };
+    }
+    if (dataClassic === "No data found") {
+      dataClassic = {
+        name: "No data found",
+        genre: "No data found",
+        publishingYear: "No data found",
+        duration: "No data found",
+        director: "No data found",
+      };
+    }
     this.setState({
       randomSerie: dataSerie,
       randomCinema: dataCinema,
