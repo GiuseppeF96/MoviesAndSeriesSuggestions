@@ -1,53 +1,53 @@
 import { check, validationResult } from "express-validator";
 import { Cinema } from "../models/cinemaMovie.js";
-
-export const getCinema_movie = async (req, res) => {
-  const cinema_movies = await Cinema.find();
-  res.status(200).send(cinema_movies);
+// Get all Cinema from the database
+export const getCinemaMovie = async (req, res) => {
+  const cinemaMovies = await Cinema.find();
+  res.status(200).send(cinemaMovies);
 };
-
-export const findCinema_movieByName = async (req, res) => {
+// Find a cinemaMovie by name
+export const findCinemaMovieByName = async (req, res) => {
   let result = await Cinema.find({ name: req.query.name });
   res.status(200).send(result);
 };
-
-export const findCinema_movieById = async (req, res) => {
+// Find a cinemaMovie by id
+export const findCinemaMovieById = async (req, res) => {
   let result = await Cinema.findById(req.params.id);
   res.status(200).send(result);
 };
-
-export const addCinema_movie = async (req, res) => {
+// Add a new cinemaMovie to the database (with validation)
+export const addCinemaMovie = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  const cinema_movie = new Cinema({
+  const cinemaMovie = new Cinema({
     name: req.body.name,
     genre: req.body.genre,
     duration: req.body.duration,
     mainActor: req.body.mainActor,
   });
-  cinema_movie
-    .save(cinema_movie)
-    .then((cinema_movie) => res.status(201).send(cinema_movie));
+  cinemaMovie
+    .save(cinemaMovie)
+    .then((cinemaMovie) => res.status(201).send(cinemaMovie));
 };
 
-//delete a cinema_movie
-export const deleteCinema_movie = async (req, res) => {
+//delete a cinemaMovie
+export const deleteCinemaMovie = async (req, res) => {
   let result = await Cinema.findByIdAndDelete(req.params.id);
   res.status(200).send(result);
 };
 
-//Patch a cinema_movie
-export const patchCinema_movie = async (req, res) => {
+//Patch a cinemaMovie
+export const patchCinemaMovie = async (req, res) => {
   let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
     new: false,
   });
   res.status(200).send(result);
 };
 
-// get random cinema_movie
-export const getRandomCinema_movie = async (req, res) => {
+// get random cinemaMovie
+export const getRandomCinemaMovie = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Cinema.countDocuments();

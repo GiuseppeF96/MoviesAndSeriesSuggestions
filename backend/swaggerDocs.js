@@ -266,7 +266,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Cinema Movies",
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
@@ -280,7 +280,7 @@ const swaggerDocs = {
             in: "body",
             description: "Cinema Movies to add to the database",
             schema: {
-              $ref: "#/definitions/Cinema Movies",
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         ],
@@ -288,13 +288,13 @@ const swaggerDocs = {
           201: {
             description: "Created",
             schema: {
-              $ref: "#/definitions/Cinema Movies",
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
       },
     },
-    "/Cinema Movies/search": {
+    "/cinema-movies/search": {
       get: {
         tags: ["Cinema Movies"],
         summary: "Get Cinema Movies by name",
@@ -311,13 +311,13 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Cinema Movies",
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
       },
     },
-    "/Cinema Movies/id/{id}": {
+    "/cinema-movies/id/{id}": {
       get: {
         tags: ["Cinema Movies"],
         summary: "Get Cinema Movies by id",
@@ -334,7 +334,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Cinema Movies",
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
@@ -380,9 +380,9 @@ const swaggerDocs = {
           type: "number",
           description: "Year in which a film was released",
         },
-        length: {
+        duration: {
           type: "number",
-          description: "Length of the film in minutes",
+          description: "Duration of the film in minutes",
         },
         director: {
           type: "string",
@@ -391,8 +391,8 @@ const swaggerDocs = {
       },
     },
 
-    Cinema_Movies: {
-      required: ["name", "genre", "length", "mainActor"],
+    CinemaMovies: {
+      required: ["name", "genre", "Duration", "mainActor"],
       properties: {
         name: {
           type: "string",
@@ -402,9 +402,9 @@ const swaggerDocs = {
           type: "string",
           description: "Genre of the Cinema Movie",
         },
-        length: {
+        duration: {
           type: "number",
-          description: "Length of the Cinema Movie in minutes",
+          description: "Duration of the Cinema Movie in minutes",
         },
         mainActor: {
           type: "string",

@@ -9,9 +9,9 @@ import {
   deleteClassic,
   getRandomClassic,
 } from "../controllers/classicController.js";
-
+// Create a router
 const router = express.Router();
-
+// Define routes
 router.get("/", getClassic);
 router.get("/search", findClassicByName);
 router.get("/id/:id", findClassicById);

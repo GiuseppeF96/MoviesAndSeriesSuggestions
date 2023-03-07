@@ -9,9 +9,9 @@ import {
   deleteSerie,
   getRandomSerie,
 } from "../controllers/seriesController.js";
-
+// Create a router
 const router = express.Router();
-
+// Define routes
 router.get("/", getSeries);
 router.get("/search", findSeriesByName);
 router.get("/id/:id", findSeriesById);
