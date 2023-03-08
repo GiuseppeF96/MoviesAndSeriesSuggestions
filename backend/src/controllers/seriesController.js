@@ -52,7 +52,11 @@ export const getRandomSerie = async (req, res) => {
     const count = await Serie.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);
     const randomSerie = await Serie.findOne().skip(randomIndex);
-    res.status(200).send(randomSerie);
+    if (count === 0) {
+      res.status(404).send({ message: "No series found" });
+    } else {
+      res.status(200).send(randomSerie);
+    }
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

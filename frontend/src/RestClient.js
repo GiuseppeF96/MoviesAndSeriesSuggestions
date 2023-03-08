@@ -1,11 +1,13 @@
 const fetch = require("node-fetch");
-// fetches api data from backend and extracts its json body return default if no data is found
+// fetches api data from backend and extracts its json body return "no data found" if json body is empty
 export async function fetchRandomSerie() {
   return await fetch("http://localhost:4000/series/randomizer", {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status === 404) {
+      if (res.status !== 200) {
+        return "No data found";
+      } else if (res.json() === "") {
         return "No data found";
       } else {
         return res.json();
@@ -25,7 +27,9 @@ export async function fetchRandomCinemaMovie() {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status === 404) {
+      if (res.status !== 200) {
+        return "No data found";
+      } else if (res.json() === "") {
         return "No data found";
       } else {
         return res.json();
@@ -45,7 +49,9 @@ export async function fetchRandomClassic() {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status === 404) {
+      if (res.status !== 200) {
+        return "No data found";
+      } else if (res.json() === "") {
         return "No data found";
       } else {
         return res.json();
