@@ -324,7 +324,6 @@ const swaggerDocs = {
         },
       },
     },
-  },
 
     "/cinema-movies": {
       get: {
