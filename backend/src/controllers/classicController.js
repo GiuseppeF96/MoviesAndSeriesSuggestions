@@ -1,5 +1,4 @@
 import { check, validationResult } from "express-validator";
-import { Cinema } from "../models/cinemaMovie.js";
 import { Classic } from "../models/classic.js";
 // Get all Classic from the database
 export const getClassic = async (req, res) => {
