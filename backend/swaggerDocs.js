@@ -234,6 +234,20 @@ const swaggerDocs = {
         },
       },
     },
+    "/classic/randomizer": {
+      get: {
+        tags: ["Classic"],
+        summary: "Get a random classic",
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classic",
+            },
+          },
+        },
+      },
+    },
     "/classic/id/{id}": {
       get: {
         tags: ["Classic"],
@@ -258,6 +272,60 @@ const swaggerDocs = {
         },
       },
     },
+
+    delete: {
+      tags: ["Classic"],
+      summary: "Delete classic by id",
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          description: "Id of the series to delete",
+          required: true,
+          type: "string",
+        },
+      ],
+      responses: {
+        200: {
+          description: "OK",
+          schema: {
+            $ref: "#/definitions/Classic",
+          },
+        },
+      },
+    },
+    patch: {
+      tags: ["Classic"],
+      summary: "Update classic by id",
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          description: "Id of the classic",
+          required: true,
+          type: "string",
+        },
+        {
+          name: "Classic",
+          in: "body",
+          description: "Values to be updated",
+          required: true,
+          schema: {
+            $ref: "#/definitions/Classic",
+          },
+        },
+      ],
+      responses: {
+        200: {
+          description: "OK",
+          schema: {
+            $ref: "#/definitions/Classic",
+          },
+        },
+      },
+    },
+  },
+
     "/cinema-movies": {
       get: {
         tags: ["Cinema Movies"],
@@ -369,7 +437,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/CinemaMovies"
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
@@ -399,7 +467,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/CinemaMovies"
+              $ref: "#/definitions/CinemaMovies",
             },
           },
         },
