@@ -7,12 +7,12 @@ export const getClassic = async (req, res) => {
 };
 // Find a classic by name
 export const findClassicByName = async (req, res) => {
-  let result = await Classic.filter({ name: req.query.name });
+  let result = await Classic.find({ name: req.query.name });
   res.status(200).send(result);
 };
 // Find a classic by id
 export const findClassicById = async (req, res) => {
-  let result = await Classic.filter(req.params.id);
+  let result = await Classic.findById(req.params.id);
   res.status(200).send(result);
 };
 // Add a new classic to the database (with validation)
@@ -52,7 +52,11 @@ export const getRandomClassic = async (req, res) => {
     const count = await Classic.countDocuments();
     const randomIndex = Math.floor(Math.random() * count);
     const randomClassic = await Classic.findOne().skip(randomIndex);
-    res.status(200).send(randomClassic);
+    if (count === 0) {
+      res.status(404).send({ message: "No series found" });
+    } else {
+      res.status(200).send(randomClassic);
+    }
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
