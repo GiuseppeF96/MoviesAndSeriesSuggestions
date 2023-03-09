@@ -9,7 +9,7 @@ const swaggerDocs = {
       url: "https://moodle.dhbw.de/mod/forum/discuss.php?d=28276",
     },
     license: {
-      name: "DHBW Karlsruhe Standart License",
+      name: "DHBW Karlsruhe Standard License",
       url: "https://moodle.dhbw.de/mod/forum/discuss.php?d=28276",
     },
   },
@@ -21,12 +21,7 @@ const swaggerDocs = {
       description: "API routes",
     },
   ],
-  summary: "Get information about all routes",
-  responses: {
-    200: {
-      description: "OK",
-    },
-  },
+
   consumes: ["application/json"],
   produces: ["application/json"],
   paths: {
