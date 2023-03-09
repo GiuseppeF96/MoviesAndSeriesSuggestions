@@ -9,11 +9,11 @@ export const getClassic = async (req, res) => {
 // Find a classic by name
 export const findClassicByName = async (req, res) => {
   if (req.query.name === undefined) {
-    res.status(400).send({ message: "No name given" });
+    res.status(400).send({ message: "No name was provided" });
   } else {
     let result = await Classic.find({ name: req.query.name });
     if (result.length === 0) {
-      res.status(404).send({ message: "Classic not found" });
+      res.status(404).send({ message: "Classic Movie not found" });
     } else {
       res.status(200).send(result);
     }
@@ -24,11 +24,12 @@ export const findClassicById = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    let result = await Classic.findById(req.params.id);
     try {
+      let result = await Classic.findById(req.params.id);
+
       res.status(200).send(result);
     } catch (err) {
-      res.status(404).send({ message: "Classic not found" });
+      res.status(404).send({ message: "Classic Movie not found" });
     }
   }
 };
@@ -57,7 +58,7 @@ export const deleteClassic = async (req, res) => {
       let result = await Classic.findByIdAndDelete(req.params.id);
       res.status(200).send(result);
     } catch (err) {
-      res.status(404).send({ message: "Classic not found" });
+      res.status(404).send({ message: "Classic Movie not found" });
     }
   }
 };
@@ -73,7 +74,7 @@ export const patchClassic = async (req, res) => {
       });
       res.status(200).send(result);
     } catch (err) {
-      res.status(404).send({ message: "Classic not found" });
+      res.status(404).send({ message: "Classic Movie not found" });
     }
   }
 };
@@ -96,11 +97,7 @@ export const getRandomClassic = async (req, res) => {
     } else {
       const randomIndex = Math.floor(Math.random() * count);
       const randomClassic = await Classic.findOne().skip(randomIndex);
-      if (count === 0) {
-        res.status(404).send({ message: "No series found" });
-      } else {
-        res.status(200).send(randomClassic);
-      }
+      res.status(200).send(randomClassic);
     }
   } catch (error) {
     res.status(500).send({ message: error.message });

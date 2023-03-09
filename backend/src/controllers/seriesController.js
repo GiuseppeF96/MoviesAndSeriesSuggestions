@@ -7,8 +7,16 @@ export const getSeries = async (req, res) => {
 };
 // Find a serie by name
 export const findSeriesByName = async (req, res) => {
-  let result = await Serie.find({ name: req.query.name });
-  res.status(200).send(result);
+  if (req.query.name === undefined) {
+    res.status(400).send({ message: "No name was provided" });
+  } else {
+    let result = await Serie.find({ name: req.query.name });
+    if (result.length === 0) {
+      res.status(404).send({ message: "Serie not found" });
+    } else {
+      res.status(200).send(result);
+    }
+  }
 };
 // Find a serie by id
 export const findSeriesById = async (req, res) => {
@@ -16,11 +24,12 @@ export const findSeriesById = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    let result = await Serie.findById(req.params.id);
-    if (!result) {
-      res.status(404).send({ message: "Serie not found" });
-    } else {
+    try {
+      let result = await Serie.findById(req.params.id);
+
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Serie not found" });
     }
   }
 };
@@ -45,11 +54,11 @@ export const deleteSerie = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    if (!Serie.findById(req.params.id)) {
-      res.status(404).send({ message: "Serie not found" });
-    } else {
+    try {
       let result = await Serie.findByIdAndDelete(req.params.id);
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Serie not found" });
     }
   }
 };
@@ -59,13 +68,13 @@ export const patchSerie = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    if (!Serie.findById(req.params.id)) {
-      res.status(404).send({ message: "Serie not found" });
-    } else {
+    try {
       let result = await Serie.findByIdAndUpdate(req.params.id, req.body, {
         new: false,
       });
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Serie not found" });
     }
   }
 };

@@ -7,19 +7,28 @@ export const getCinemaMovie = async (req, res) => {
 };
 // Find a cinemaMovie by name
 export const findCinemaMovieByName = async (req, res) => {
-  let result = await Cinema.find({ name: req.query.name });
-  res.status(200).send(result);
+  if (req.query.name === undefined) {
+    res.status(400).send({ message: "No name was provided" });
+  } else {
+    let result = await Cinema.find({ name: req.query.name });
+    if (result.length === 0) {
+      res.status(404).send({ message: "Cinema Movie not found" });
+    } else {
+      res.status(200).send(result);
+    }
+  }
 };
 // Find a cinemaMovie by id
 export const findCinemaMovieById = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(404).send({ message: "ID has the wrong length" });
-  }
-  if (!Cinema.findById(req.params.id)) {
-    res.status(404).send({ message: "Cinema not found" });
   } else {
-    let result = await Cinema.findById(req.params.id);
-    res.status(200).send(result);
+    try {
+      let result = await Cinema.findById(req.params.id);
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Cinema Movie not found" });
+    }
   }
 };
 // Add a new cinemaMovie to the database (with validation)
@@ -43,11 +52,13 @@ export const addCinemaMovie = async (req, res) => {
 export const deleteCinemaMovie = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
-  } else if (!Cinema.findById(req.params.id)) {
-    res.status(404).send({ message: "Cinema not found" });
   } else {
-    let result = await Cinema.findByIdAndDelete(req.params.id);
-    res.status(200).send(result);
+    try {
+      let result = await Cinema.findByIdAndDelete(req.params.id);
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Cinema Movie not found" });
+    }
   }
 };
 
@@ -55,13 +66,15 @@ export const deleteCinemaMovie = async (req, res) => {
 export const patchCinemaMovie = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
-  } else if (!Cinema.findById(req.params.id)) {
-    res.status(404).send({ message: "Cinema not found" });
   } else {
-    let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
-      new: false,
-    });
-    res.status(200).send(result);
+    try {
+      let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
+        new: false,
+      });
+      res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Cinema Movie not found" });
+    }
   }
 };
 
