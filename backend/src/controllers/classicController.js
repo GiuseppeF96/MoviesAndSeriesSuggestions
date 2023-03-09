@@ -12,20 +12,23 @@ export const findClassicByName = async (req, res) => {
     res.status(400).send({ message: "No name given" });
   } else {
     let result = await Classic.find({ name: req.query.name });
-
-    res.status(200).send(result);
+    if (result.length === 0) {
+      res.status(404).send({ message: "Classic not found" });
+    } else {
+      res.status(200).send(result);
+    }
   }
 };
 // Find a classic by id
 export const findClassicById = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
     let result = await Classic.findById(req.params.id);
-    if (!result) {
-      res.status(404).send({ message: "Classic not found" });
-    } else {
+    try {
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Classic not found" });
     }
   }
 };
@@ -48,13 +51,13 @@ export const addClassic = async (req, res) => {
 //delete a classic
 export const deleteClassic = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    if (!Classic.findById(req.params.id)) {
-      res.status(404).send({ message: "Classic not found" });
-    } else {
+    try {
       let result = await Classic.findByIdAndDelete(req.params.id);
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Classic not found" });
     }
   }
 };
@@ -64,13 +67,13 @@ export const patchClassic = async (req, res) => {
   if (req.params.id.length !== 24) {
     res.status(400).send({ message: "ID has the wrong length" });
   } else {
-    if (!Classic.findById(req.params.id)) {
-      res.status(404).send({ message: "Classic not found" });
-    } else {
+    try {
       let result = await Classic.findByIdAndUpdate(req.params.id, req.body, {
         new: false,
       });
       res.status(200).send(result);
+    } catch (err) {
+      res.status(404).send({ message: "Classic not found" });
     }
   }
 };
@@ -81,17 +84,15 @@ export const getRandomClassic = async (req, res) => {
   try {
     const count = await Classic.countDocuments();
     if (count === 0) {
-      res
-        .status(404)
-        .send({
-          _id: "No classic found",
-          name: "No classic found",
-          genre: "No classic found",
-          publishingYear: "No classic found",
-          duration: "No classic found",
-          director: "No classic found",
-          _v: "No classic found",
-        });
+      res.status(404).send({
+        _id: "No classic found",
+        name: "No classic found",
+        genre: "No classic found",
+        publishingYear: "No classic found",
+        duration: "No classic found",
+        director: "No classic found",
+        _v: "No classic found",
+      });
     } else {
       const randomIndex = Math.floor(Math.random() * count);
       const randomClassic = await Classic.findOne().skip(randomIndex);

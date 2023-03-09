@@ -13,7 +13,7 @@ export const findCinemaMovieByName = async (req, res) => {
 // Find a cinemaMovie by id
 export const findCinemaMovieById = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(404).send({ message: "ID is too short" });
+    res.status(404).send({ message: "ID has the wrong length" });
   }
   if (!Cinema.findById(req.params.id)) {
     res.status(404).send({ message: "Cinema not found" });
@@ -42,7 +42,7 @@ export const addCinemaMovie = async (req, res) => {
 //delete a cinemaMovie
 export const deleteCinemaMovie = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else if (!Cinema.findById(req.params.id)) {
     res.status(404).send({ message: "Cinema not found" });
   } else {

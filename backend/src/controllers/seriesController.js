@@ -14,7 +14,7 @@ export const findSeriesByName = async (req, res) => {
 export const findSeriesById = async (req, res) => {
   // Check if the id is valid
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
     let result = await Serie.findById(req.params.id);
     if (!result) {
@@ -43,7 +43,7 @@ export const addSerie = async (req, res) => {
 // Delete a serie by id
 export const deleteSerie = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
     if (!Serie.findById(req.params.id)) {
       res.status(404).send({ message: "Serie not found" });

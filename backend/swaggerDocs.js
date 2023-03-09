@@ -175,7 +175,7 @@ const swaggerDocs = {
       },
     },
 
-    "/classic": {
+    "/classics": {
       get: {
         tags: ["Classic"],
         summary: "Get all classics in database",
@@ -211,7 +211,7 @@ const swaggerDocs = {
         },
       },
     },
-    "/classic/search": {
+    "/classics/search": {
       get: {
         tags: ["Classic"],
         summary: "Get classics by name",
@@ -228,13 +228,13 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
             },
           },
         },
       },
     },
-    "/classic/randomizer": {
+    "/classics/randomizer": {
       get: {
         tags: ["Classic"],
         summary: "Get a random classic",
@@ -242,13 +242,13 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
             },
           },
         },
       },
     },
-    "/classic/id/{id}": {
+    "/classics/id/{id}": {
       get: {
         tags: ["Classic"],
         summary: "Get classic by id",
@@ -266,65 +266,64 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
+            },
+          },
+        },
+      },
+
+      delete: {
+        tags: ["Classic"],
+        summary: "Delete classic by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the series to delete",
+            required: true,
+            type: "string",
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classics",
+            },
+          },
+        },
+      },
+      patch: {
+        tags: ["Classic"],
+        summary: "Update classic by id",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "Id of the classic",
+            required: true,
+            type: "string",
+          },
+          {
+            name: "Classic",
+            in: "body",
+            description: "Values to be updated",
+            required: true,
+            schema: {
+              $ref: "#/definitions/Classics",
+            },
+          },
+        ],
+        responses: {
+          200: {
+            description: "OK",
+            schema: {
+              $ref: "#/definitions/Classics",
             },
           },
         },
       },
     },
-
-    delete: {
-      tags: ["Classic"],
-      summary: "Delete classic by id",
-      parameters: [
-        {
-          name: "id",
-          in: "path",
-          description: "Id of the series to delete",
-          required: true,
-          type: "string",
-        },
-      ],
-      responses: {
-        200: {
-          description: "OK",
-          schema: {
-            $ref: "#/definitions/Classic",
-          },
-        },
-      },
-    },
-    patch: {
-      tags: ["Classic"],
-      summary: "Update classic by id",
-      parameters: [
-        {
-          name: "id",
-          in: "path",
-          description: "Id of the classic",
-          required: true,
-          type: "string",
-        },
-        {
-          name: "Classic",
-          in: "body",
-          description: "Values to be updated",
-          required: true,
-          schema: {
-            $ref: "#/definitions/Classic",
-          },
-        },
-      ],
-      responses: {
-        200: {
-          description: "OK",
-          schema: {
-            $ref: "#/definitions/Classic",
-          },
-        },
-      },
-    },
-
     "/cinema-movies": {
       get: {
         tags: ["Cinema Movies"],
