@@ -54,7 +54,7 @@ export const deleteCinemaMovie = async (req, res) => {
 //Patch a cinemaMovie
 export const patchCinemaMovie = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else if (!Cinema.findById(req.params.id)) {
     res.status(404).send({ message: "Cinema not found" });
   } else {
@@ -70,9 +70,21 @@ export const getRandomCinemaMovie = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Cinema.countDocuments();
-    const randomIndex = Math.floor(Math.random() * count);
-    const randomCinema = await Cinema.findOne().skip(randomIndex);
-    res.status(200).send(randomCinema);
+    if (count === 0) {
+      // Status 200 to avoid error in frontend
+      res.status(200).send({
+        _id: "No movie found",
+        name: "No movie found",
+        genre: "No movie found",
+        duration: "No movie found",
+        mainActor: "No movie found",
+        __v: 0,
+      });
+    } else {
+      const randomIndex = Math.floor(Math.random() * count);
+      const randomCinema = await Cinema.findOne().skip(randomIndex);
+      res.status(200).send(randomCinema);
+    }
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

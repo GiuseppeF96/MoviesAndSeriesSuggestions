@@ -57,7 +57,7 @@ export const deleteSerie = async (req, res) => {
 //Patch a serie by id
 export const patchSerie = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
     if (!Serie.findById(req.params.id)) {
       res.status(404).send({ message: "Serie not found" });

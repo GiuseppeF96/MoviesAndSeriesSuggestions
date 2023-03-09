@@ -62,7 +62,7 @@ export const deleteClassic = async (req, res) => {
 //Patch a classic
 export const patchClassic = async (req, res) => {
   if (req.params.id.length !== 24) {
-    res.status(400).send({ message: "ID is too short" });
+    res.status(400).send({ message: "ID has the wrong length" });
   } else {
     if (!Classic.findById(req.params.id)) {
       res.status(404).send({ message: "Classic not found" });
@@ -80,12 +80,26 @@ export const getRandomClassic = async (req, res) => {
   res.set("Access-Control-Allow-Origin", "http://localhost:3000");
   try {
     const count = await Classic.countDocuments();
-    const randomIndex = Math.floor(Math.random() * count);
-    const randomClassic = await Classic.findOne().skip(randomIndex);
     if (count === 0) {
-      res.status(404).send({ message: "No series found" });
+      res
+        .status(404)
+        .send({
+          _id: "No classic found",
+          name: "No classic found",
+          genre: "No classic found",
+          publishingYear: "No classic found",
+          duration: "No classic found",
+          director: "No classic found",
+          _v: "No classic found",
+        });
     } else {
-      res.status(200).send(randomClassic);
+      const randomIndex = Math.floor(Math.random() * count);
+      const randomClassic = await Classic.findOne().skip(randomIndex);
+      if (count === 0) {
+        res.status(404).send({ message: "No series found" });
+      } else {
+        res.status(200).send(randomClassic);
+      }
     }
   } catch (error) {
     res.status(500).send({ message: error.message });
