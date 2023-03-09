@@ -183,7 +183,7 @@ const swaggerDocs = {
           200: {
             description: "OK",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
             },
           },
         },
@@ -197,7 +197,7 @@ const swaggerDocs = {
             in: "body",
             description: "Classics to add to the database",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
             },
           },
         ],
@@ -205,7 +205,7 @@ const swaggerDocs = {
           201: {
             description: "Created",
             schema: {
-              $ref: "#/definitions/Classic",
+              $ref: "#/definitions/Classics",
             },
           },
         },
@@ -498,7 +498,7 @@ const swaggerDocs = {
     },
 
     Classics: {
-      required: ["name", "genre", "publishingYear", "length", "director"],
+      required: ["name", "genre", "publishingYear", "duration", "director"],
       properties: {
         name: {
           type: "string",
