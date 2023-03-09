@@ -1,5 +1,3 @@
-import { json } from "express";
-
 const swaggerDocs = {
   swagger: "2.0",
   info: {
@@ -23,6 +21,12 @@ const swaggerDocs = {
       description: "API routes",
     },
   ],
+  summary: "Get information about all routes",
+  responses: {
+    200: {
+      description: "OK",
+    },
+  },
   consumes: ["application/json"],
   produces: ["application/json"],
   paths: {
