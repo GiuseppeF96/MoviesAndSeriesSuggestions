@@ -3,17 +3,31 @@ import { Classic } from "../models/classic.js";
 // Get all Classic from the database
 export const getClassic = async (req, res) => {
   const classic = await Classic.find();
+
   res.status(200).send(classic);
 };
 // Find a classic by name
 export const findClassicByName = async (req, res) => {
-  let result = await Classic.find({ name: req.query.name });
-  res.status(200).send(result);
+  if (req.query.name === undefined) {
+    res.status(400).send({ message: "No name given" });
+  } else {
+    let result = await Classic.find({ name: req.query.name });
+
+    res.status(200).send(result);
+  }
 };
 // Find a classic by id
 export const findClassicById = async (req, res) => {
-  let result = await Classic.findById(req.params.id);
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    let result = await Classic.findById(req.params.id);
+    if (!result) {
+      res.status(404).send({ message: "Classic not found" });
+    } else {
+      res.status(200).send(result);
+    }
+  }
 };
 // Add a new classic to the database (with validation)
 export const addClassic = async (req, res) => {
@@ -33,16 +47,32 @@ export const addClassic = async (req, res) => {
 
 //delete a classic
 export const deleteClassic = async (req, res) => {
-  let result = await Classic.findByIdAndDelete(req.params.id);
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    if (!Classic.findById(req.params.id)) {
+      res.status(404).send({ message: "Classic not found" });
+    } else {
+      let result = await Classic.findByIdAndDelete(req.params.id);
+      res.status(200).send(result);
+    }
+  }
 };
 
 //Patch a classic
 export const patchClassic = async (req, res) => {
-  let result = await Classic.findByIdAndUpdate(req.params.id, req.body, {
-    new: false,
-  });
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    if (!Classic.findById(req.params.id)) {
+      res.status(404).send({ message: "Classic not found" });
+    } else {
+      let result = await Classic.findByIdAndUpdate(req.params.id, req.body, {
+        new: false,
+      });
+      res.status(200).send(result);
+    }
+  }
 };
 
 // get random classic movie

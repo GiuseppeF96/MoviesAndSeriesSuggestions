@@ -12,8 +12,15 @@ export const findCinemaMovieByName = async (req, res) => {
 };
 // Find a cinemaMovie by id
 export const findCinemaMovieById = async (req, res) => {
-  let result = await Cinema.findById(req.params.id);
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(404).send({ message: "ID is too short" });
+  }
+  if (!Cinema.findById(req.params.id)) {
+    res.status(404).send({ message: "Cinema not found" });
+  } else {
+    let result = await Cinema.findById(req.params.id);
+    res.status(200).send(result);
+  }
 };
 // Add a new cinemaMovie to the database (with validation)
 export const addCinemaMovie = async (req, res) => {
@@ -34,16 +41,28 @@ export const addCinemaMovie = async (req, res) => {
 
 //delete a cinemaMovie
 export const deleteCinemaMovie = async (req, res) => {
-  let result = await Cinema.findByIdAndDelete(req.params.id);
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else if (!Cinema.findById(req.params.id)) {
+    res.status(404).send({ message: "Cinema not found" });
+  } else {
+    let result = await Cinema.findByIdAndDelete(req.params.id);
+    res.status(200).send(result);
+  }
 };
 
 //Patch a cinemaMovie
 export const patchCinemaMovie = async (req, res) => {
-  let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
-    new: false,
-  });
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else if (!Cinema.findById(req.params.id)) {
+    res.status(404).send({ message: "Cinema not found" });
+  } else {
+    let result = await Cinema.findByIdAndUpdate(req.params.id, req.body, {
+      new: false,
+    });
+    res.status(200).send(result);
+  }
 };
 
 // get random cinemaMovie

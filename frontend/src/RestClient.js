@@ -5,20 +5,10 @@ export async function fetchRandomSerie() {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status !== 200) {
-        return "No data found";
-      } else if (res.json() === "") {
-        return "No data found";
-      } else {
-        return res.json();
-      }
+      return res.json();
     })
     .then((res) => {
-      if (res === "No data found") {
-        return res;
-      } else {
-        return res;
-      }
+      return res;
     });
 }
 // fetches api data from backend and extracts its json body
@@ -27,20 +17,10 @@ export async function fetchRandomCinemaMovie() {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status !== 200) {
-        return "No data found";
-      } else if (res.json() === "") {
-        return "No data found";
-      } else {
-        return res.json();
-      }
+      return res.json();
     })
     .then((res) => {
-      if (res === "No data found") {
-        return res;
-      } else {
-        return res;
-      }
+      return res;
     });
 }
 // fetches api data from backend and extracts its json body
@@ -49,19 +29,9 @@ export async function fetchRandomClassic() {
     mode: "cors",
   })
     .then((res) => {
-      if (res.status !== 200) {
-        return "No data found";
-      } else if (res.json() === "") {
-        return "No data found";
-      } else {
-        return res.json();
-      }
+      return res.json();
     })
     .then((res) => {
-      if (res === "No data found") {
-        return res;
-      } else {
-        return res;
-      }
+      return res;
     });
 }

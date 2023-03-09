@@ -12,8 +12,17 @@ export const findSeriesByName = async (req, res) => {
 };
 // Find a serie by id
 export const findSeriesById = async (req, res) => {
-  let result = await Serie.findById(req.params.id);
-  res.status(200).send(result);
+  // Check if the id is valid
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    let result = await Serie.findById(req.params.id);
+    if (!result) {
+      res.status(404).send({ message: "Serie not found" });
+    } else {
+      res.status(200).send(result);
+    }
+  }
 };
 
 // Add a new serie to the database (with validation)
@@ -33,16 +42,32 @@ export const addSerie = async (req, res) => {
 
 // Delete a serie by id
 export const deleteSerie = async (req, res) => {
-  let result = await Serie.findByIdAndDelete(req.params.id);
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    if (!Serie.findById(req.params.id)) {
+      res.status(404).send({ message: "Serie not found" });
+    } else {
+      let result = await Serie.findByIdAndDelete(req.params.id);
+      res.status(200).send(result);
+    }
+  }
 };
 
 //Patch a serie by id
 export const patchSerie = async (req, res) => {
-  let result = await Serie.findByIdAndUpdate(req.params.id, req.body, {
-    new: false,
-  });
-  res.status(200).send(result);
+  if (req.params.id.length !== 24) {
+    res.status(400).send({ message: "ID is too short" });
+  } else {
+    if (!Serie.findById(req.params.id)) {
+      res.status(404).send({ message: "Serie not found" });
+    } else {
+      let result = await Serie.findByIdAndUpdate(req.params.id, req.body, {
+        new: false,
+      });
+      res.status(200).send(result);
+    }
+  }
 };
 // Get a random serie from the database
 export const getRandomSerie = async (req, res) => {
@@ -50,11 +75,19 @@ export const getRandomSerie = async (req, res) => {
   try {
     // Get the count of all entries in the DB and then get a random entry
     const count = await Serie.countDocuments();
-    const randomIndex = Math.floor(Math.random() * count);
-    const randomSerie = await Serie.findOne().skip(randomIndex);
     if (count === 0) {
-      res.status(404).send({ message: "No series found" });
+      //status 200 to fill frontend with "no series found"
+      res.status(200).send({
+        _id: "No series found",
+        name: "No series found",
+        genre: "No series found",
+        seasons: "No series found",
+        episodes: "No series found",
+        __v: 0,
+      });
     } else {
+      const randomIndex = Math.floor(Math.random() * count);
+      const randomSerie = await Serie.findOne().skip(randomIndex);
       res.status(200).send(randomSerie);
     }
   } catch (error) {
